@@ -53,14 +53,14 @@ turn it into a function:
 
 ```python
 parameter = 10
-result = maths(parameter)
+result = some_maths(parameter)
 ```
 
 becomes:
 
 ```python
-def do_maths(parameter=10):
-    return maths(parameter)
+def do_some_maths(parameter=10):
+    return some_maths(parameter)
 ```
 
 We still want to be able to run our file as a script though, and we
@@ -68,14 +68,29 @@ can use a common Python idiom to do so:
 
 ```python
 if __name__ == "__main__":
-    print(do_maths())
+    print(do_some_maths())
 ```
 
 If you've not seen this idiom before, just take it as some magic words
 -- there is an explanation, but it's not important to understand at
 this stage. The result is that the `if` statement is true _only when
 we run the file as a script_, and is false if we `import` the file as
-a module.
+a module. In other words, when we run this script from the command
+line:
+
+```bash
+$ python ./my_script.py
+```
+
+then `print(do_some_maths())` will execute. But if instead we want to
+use the same file as a module in another python script or module:
+
+```python
+import my_script
+```
+
+then the `if __name__ == "__main__"` statement will be `False` and so
+`print(do_some_maths())` won't execute.
 
 With these two changes, we can now use our module both as a script as
 before, _and_ `import` it to use in other code.
@@ -86,13 +101,13 @@ code:
 
 ```python
 def main():
-    print(do_maths())
+    print(do_some_maths())
 
 if __name__ == "__main__":
     main()
 ```
 
-Note that our function `main` is nothing really to do with the
+Note that our function `main` is nothing _really_ to do with the
 `"__main__"` string here, it's just convention. Remember that
 double-underscores in Python usually mean magic is happening.
 
@@ -100,7 +115,7 @@ Lastly, it's good practice to document your code. Python has a really
 nice built in feature called docstrings:
 
 ```python
-def do_maths(parameter=10):
+def do_some_maths(parameter=10):
     """Do some maths
 
     Arguments

@@ -126,6 +126,9 @@ do_maths(parameter=10)
         The maths parameter
 ```
 
+There are two main styles for Python docstrings, but I much prefer
+[numpydoc](https://numpydoc.readthedocs.io/en/latest/format.html).
+
 1. Create two functions: `flux_surface` and `plot_surface`
 2. `flux_surface` should take `A`, `kappa`, `delta`, and `R0` as
    inputs, with default values as the current hardcoded ones, and
@@ -135,3 +138,12 @@ do_maths(parameter=10)
 5. Wrap up both functions in a third function `main`
 6. Use the `__main__` idiom to run `main`
 7. Run the step 1 tests again -- now everything should pass
+
+**Bonus:**
+
+- Pass an optional `ax` argument to `plot_surface`. If `ax is not
+  None`, plot to that axis, otherwise create a [new figure and
+  axis][subplots] and plot to that. Return the actual axis you used
+
+
+[subplots]: (https://matplotlib.org/stable/users/explain/figures.html#creating-figures)

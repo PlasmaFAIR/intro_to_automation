@@ -3,12 +3,25 @@ import subprocess
 import textwrap
 
 
-def test_command_line_args(tmp_path):
+def test_command_line_help(tmp_path):
     status = subprocess.run(
         ["miller", "--help"], cwd=tmp_path, capture_output=True, text=True
     )
     assert status.returncode == 0, status.stderr
     assert "options:" in status.stdout, "Help argument unsuccessful"
+
+
+def test_command_line_args(tmp_path):
+    status = subprocess.run(
+        "miller --delta 0.42 --kappa=1.1",
+        shell=True,
+        cwd=tmp_path,
+        capture_output=True,
+        text=True,
+    )
+    assert status.returncode == 0, status.stderr
+    figure = tmp_path / "miller.png"
+    assert figure.is_file(), f"Missing figure at '{figure}'"
 
 
 def test_input_file(tmp_path):

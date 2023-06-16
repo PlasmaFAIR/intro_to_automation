@@ -44,8 +44,10 @@ Vol. 5, No. 4, April 1998 Miller et al.][1]
 
 
 ```math
-R_s(r, \theta) = R_0 + r * \cos[\theta + (\sin^{-1}\delta) * \sin(\theta)]
-Z_s(r, \theta) = r * \kappa * \sin(\theta)
+\begin{align}
+R_s(r, \theta) &= R_0 + r \cos[\theta + (\sin^{-1}\delta) \sin(\theta)] \\
+Z_s(r, \theta) &= r \kappa \sin(\theta)
+\end{align}
 
 r = R_0 / A
 ```

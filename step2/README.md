@@ -77,6 +77,7 @@ or documentation.
 1. Create a minimal `pyproject.toml`
 2. Add the dependencies `numpy` and `matplotlib`
 3. Run the `step2` tests using `pytest`
+   - Note that `test_install` can take ~10-15 seconds to run
 
 **Bonus:**
 
@@ -105,6 +106,31 @@ environment to use for real work.
 Entry points and scripts
 ------------------------
 
-`[project.scripts]`
+While we've now made it much easier to install our script and to use
+it as a module in other tools and software, we seem to have made it
+more difficult to use from the command line. To recover this ability,
+we can create an "entry point", a mechanism that aids discoverability.
 
-`main` function
+To add a console script entry point, we need to add a key under the
+`[project.scripts]` table in `pyproject.toml` with the following
+syntax:
+
+```toml
+[project.scripts]
+script_name = "package.module:function"
+```
+
+Now when we install our package, `script_name` will get installed as
+an executable that runs `package.module.function()`. And now we
+discover the reason for wrapping up our script functions in one more
+function `main`.
+
+1. Add an entry point called `miller` that calls your `main` function.
+2. To make it available, you'll need to reinstall your package
+   - Don't forget to install with `--editable` so that future changes
+     to the code will get picked up
+
+Now we're back to where we started, with a script we can call from the
+command line! Except now we have something that we can use in other
+tools, and is also to get installed -- useful not just for other
+people, but for us too if we start using other machines.

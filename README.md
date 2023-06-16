@@ -1,14 +1,36 @@
 Automate Your PhD
 =================
 
-0. Remove hardcoded paths
-1. Convert to functions
-2. Turn it into a package
-3. Remove hardcoded parameters
-4. Add tests
+This project will take you through turning a script with hardcoded
+parameters into a reusable package that is easier to use, more
+flexible, and can be used to automate your research.
 
-Miller Geometry
-===============
+Requirements
+------------
+
+You'll need Python 3.8+ and `pip` installed, and a moderate amount of
+Python knowledge. While this tutorial uses Python, many of the
+techniques we'll go through are more broadly applicable to most other
+programming languages.
+
+Overview
+--------
+
+Start by forking this project on GitHub, and cloning it locally. Then
+work through the four steps:
+
+1. Reusable module
+2. Packaging
+3. Input
+4. Testing
+
+Each step comes with a set of tests that you should run after each
+exercise. The tests will start off all failing, and successfully
+completing each exercise will make more and more tests pass. You can
+use this to assess your progress through the whole tutorial.
+
+Background: Miller Geometry
+===========================
 
 Local equilibrium representation defined as in: [Phys. Plasmas,
 Vol. 5, No. 4, April 1998 Miller et al.][1]

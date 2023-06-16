@@ -64,10 +64,9 @@ Metadata
 --------
 
 There is now a standard metadata format for Python packages (described
-in [PEP518](https://peps.python.org/pep-0518/)) which is specified in
-the `pyproject.toml` file. [TOML](https://toml.io/en/) is a popular
-file format that has a well defined syntax and semantics, and is
-pretty easy to read.
+in [PEP518][PEP518]) which is specified in the `pyproject.toml`
+file. [TOML](https://toml.io/en/) is a popular file format that has a
+well defined syntax and semantics, and is pretty easy to read.
 
 A `pyproject.toml` file consists of tables denoted by square brackets
 `[]`, and key-value pairs separated by an equals sign `=`. The minimum
@@ -87,7 +86,8 @@ install .`, but there are a couple more useful keys and
 tables. `dependencies` is a list of other packages required to run
 your package, `[project.optional-dependencies]` is a table specifying
 other packages that are useful but not required, for example for tests
-or documentation.
+or documentation. [PEP631][PEP631] describes the standard for
+specifying dependencies in `pyproject.toml`.
 
 1. Create a minimal `pyproject.toml`
 2. Add the dependencies `numpy` and `matplotlib`
@@ -95,7 +95,7 @@ or documentation.
 
 **Bonus:**
 
-- Add `pytest` as an optional dependency
+- Add `pytest` as an optional dependency named `tests`
 - Use [`setuptools_scm`][setuptools_scm] to dynamically set the version
 
 Virtual environments
@@ -115,6 +115,14 @@ environment to use for real work.
    usually use the imaginative name "venv")
 2. Activate the environment with `source <name>/bin/activate`
 3. Install your project using the `--editable` flag
+   - `pip` can install from local paths (as well as package names from
+     PyPI, the usual, and URLs of Github projects too), you can use
+     the Unix shortcut `.` to refer to the current directory
+   - You'll probably also need to install `pytest` from inside the
+     virtual environment as well to pass some of the tests
+   - If you completed the bonus exercises adding `pytest` as an
+     optional dependency, you can install it automatically with
+     `.[tests]` as the path
 4. Run the tests
 
 Entry points and scripts
@@ -150,4 +158,6 @@ tools, and is also to get installed -- useful not just for other
 people, but for us too if we start using other machines.
 
 
+[PEP518]: https://peps.python.org/pep-0518
+[PEP631]: https://peps.python.org/pep-0631
 [setuptools_scm]: https://github.com/pypa/setuptools_scm/

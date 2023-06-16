@@ -4,6 +4,11 @@ Packaging
 A package is a module, or collection of modules, along with some
 metadata that describes things like their dependencies.
 
+**Note:** one of the tests for this step, `test_install` can take
+~10-15 seconds to run, so don't worry if it takes awhile! You can use
+`pytest -k "step2 and not install"` to run the step 2 tests and skip
+just that one.
+
 Project structure
 -----------------
 
@@ -30,7 +35,7 @@ find the right files because this tutorial has some extra directories:
 ├── README.md
 ├── src
 │   └── miller
-│       └── miller.py
+│       └── __init__.py
 ├── step1
 │   ├── README.md
 │   └── test_step1.py
@@ -40,10 +45,20 @@ find the right files because this tutorial has some extra directories:
 This way, when building the package, only the modules under `src` are
 found, and everything else is automatically ignored.
 
+We also rename the file to `__init__.py` so that our functions are
+immediately available when we do `import miller`.
+
 1. Create the nested directories: `src/miller`
-2. Use `git mv` to move `miller.py` under this new directory
+2. Use `git mv` to move `miller.py` under this new directory and
+   change its name to `__init__.py`
    - `git mv` both moves a file and stages the change
-3. Don't forget to commit!
+3. Don't forget to run the tests and commit!
+
+**Bonus:**
+
+- Experiment with keeping the filename as `src/miller/miller.py`. Can
+  you see why we've named it `src/miller/__init__.py` instead? What
+  could we do if we wanted to keep it as `src/miller/miller.py`?
 
 Metadata
 --------
@@ -77,12 +92,11 @@ or documentation.
 1. Create a minimal `pyproject.toml`
 2. Add the dependencies `numpy` and `matplotlib`
 3. Run the `step2` tests using `pytest`
-   - Note that `test_install` can take ~10-15 seconds to run
 
 **Bonus:**
 
 - Add `pytest` as an optional dependency
-- Use `setuptools_scm` to dynamically set the version
+- Use [`setuptools_scm`][setuptools_scm] to dynamically set the version
 
 Virtual environments
 --------------------
@@ -134,3 +148,6 @@ Now we're back to where we started, with a script we can call from the
 command line! Except now we have something that we can use in other
 tools, and is also to get installed -- useful not just for other
 people, but for us too if we start using other machines.
+
+
+[setuptools_scm]: https://github.com/pypa/setuptools_scm/

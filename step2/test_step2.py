@@ -14,12 +14,15 @@ def test_project_structure():
     src_dir = top_level_dir / "src"
     assert src_dir.is_dir(), "Missing 'src' directory"
 
-    assert (
-        src_dir / "miller.py"
-    ), "'miller.py' in wrong directory ('{src_dir}', should be in "
-
     package_dir = src_dir / "miller"
     assert package_dir.is_dir(), "Missing 'src/miller' directory"
+
+    wrong_name = package_dir / "miller.py"
+    correct_name = package_dir / "__init__.py"
+    assert not (
+        wrong_name.exists()
+    ), f"Python file has wrong name ('{wrong_name}', but should be '{correct_name}')"
+    assert correct_name.is_file(), f"Expected '{correct_name}', have you made a tpyo?"
 
 
 def test_install(tmp_path):

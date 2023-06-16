@@ -63,6 +63,13 @@ def do_some_maths(parameter=10):
     return some_maths(parameter)
 ```
 
+If you also plot graphs in your script, it's a really good idea to put
+them in separate function(s) from the rest of your code. This way, if
+you only want to change the way the plots look somehow (bigger fonts,
+changing the markers, location of the legend, and so on), then you
+would only have to re-run the plotting function, and not the
+(potentially) expensive other calculations.
+
 We still want to be able to run our file as a script though, and we
 can use a common Python idiom to do so:
 

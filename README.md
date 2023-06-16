@@ -39,8 +39,9 @@ use this to assess your progress through the whole tutorial.
 Background: Miller Geometry
 ===========================
 
-Local equilibrium representation defined as in: [Phys. Plasmas,
-Vol. 5, No. 4, April 1998 Miller et al.][1]
+A local equilibrium of the magnetic field of a tokamak can be
+represented with the so-called Miller parameterisation, defined in
+[Phys. Plasmas, Vol. 5, No. 4, April 1998 Miller et al.][1]:
 
 
 ```math
@@ -48,13 +49,21 @@ Vol. 5, No. 4, April 1998 Miller et al.][1]
 R_s(r, \theta) &= R_0 + r \cos[\theta + (\sin^{-1}\delta) \sin(\theta)] \\
 Z_s(r, \theta) &= r \kappa \sin(\theta)
 \end{align}
-
-r = R_0 / A
 ```
 
 where $`R_s, Z_s`$ are the major radius and vertical coordinate of the
-flux surface, $`R_0`$ is the major radius of the magnetic axis, $`r`$
-is the minor radius of the flux surface, $`A`$ is the aspect ratio,
-$`\kappa`$ is the elongation, and $`delta`$ is the triangularity.
+flux surface, $`R_0`$ is the major radius of the magnetic axis, $`A`$
+is the aspect ratio, $`r = R_0 / A`$ is the minor radius of the flux
+surface, $`\theta`$ is the geometric poloidal angle, $`\kappa`$ is the
+elongation, and $`delta`$ is the triangularity.
+
+The three parameters, $`A, \kappa, \delta`$ give a nice, simple
+representation of a single flux surface. To be useful in practice, for
+example in order to calculate the poloidal magnetic field, we actually
+need a few more parameters, but as this is just a toy to demonstrate
+software development practices, we won't concern ourselves with them
+here.
+
+![An example of a Miller parameterised flux surface](.images/example_plot.png "An example of a Miller parameterised flux surface")
 
 [1]: https://doi.org/10.1063/1.872666

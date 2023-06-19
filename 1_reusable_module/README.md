@@ -102,9 +102,9 @@ then the `if __name__ == "__main__"` statement will be `False` and so
 With these two changes, we can now use our module both as a script as
 before, _and_ `import` it to use in other code.
 
-For various reasons that we'll come to later, it's also idea to wrap
-up our functions in a single function, and call _that_ as our script
-code:
+For various reasons that we'll come to later, it's also a good idea
+to wrap up our functions in a single function, and call _that_ as our
+script code:
 
 ```python
 def main():

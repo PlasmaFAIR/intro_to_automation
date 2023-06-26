@@ -58,7 +58,7 @@ same names as your function arguments, as we can use the
 dict-unpacking "double splat" operator:
 
 ```python
-do_some_maths(**vargs(args))
+do_some_maths(**vars(args))
 ```
 
 although you may have to remove or add other arguments. As with
@@ -123,8 +123,8 @@ with open(filename, "rb") as f:
    - Don't forget to use `--editable` or `-e` while developing!
 2. Add a new argument `--filename` to your `parser`. You'll want to
    pass `default=None` to `add_argument` so that it has some default
-   value. The [`argparse`][argparse_default] has some more information
-   on this argument.
+   value. The [`argparse`][argparse_default] docs have some more
+   information on this argument.
 3. After parsing the command line arguments, if a filename has been
    passed, use `tomli.load` to read the input file
 4. Extract the Miller parameters from the data, use them instead of

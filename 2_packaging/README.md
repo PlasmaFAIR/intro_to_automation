@@ -100,8 +100,14 @@ specifying dependencies in `pyproject.toml`.
 
 **Advanced:**
 
+- Use [`importlib_metadata`][importlib_metadata] to set `__version__`
+    - This is included in the standard library for Python >= 3.8 as
+      `importlib.metadata` with the same interface, just a (slightly!) different
+      name
+    - Hint: In `__init__.py`, `__name__` is the name of the package
 - Use [`setuptools_scm`][setuptools_scm] to dynamically set the version
-    - There are a few moving parts to this!
+    - There are a few moving parts to this, and a couple of gotchas around
+      editable installs!
 
 
 Virtual environments

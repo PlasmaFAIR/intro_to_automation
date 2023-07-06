@@ -86,6 +86,13 @@ tools and resources:
       Sphinx (the [xarray][xarray] docs, for instance, are written in
       Sphinx and built with ReadTheDocs)
 
+For a longer and more in-depth course on packaging Python please see
+[this Software Carpentries incubator course][python_packaging], which
+includes more details on the project metadata, publishing packages on
+PyPI, and the sometimes confusing history behind python packages. This
+course was written by Liam Pattinson, another member of
+[PlasmaFAIR][plasmafair].
+
 [actions]: https://docs.github.com/en/actions
 [netcdf]: https://www.unidata.ucar.edu/software/netcdf/
 [hdf5]: https://www.hdfgroup.org/solutions/hdf5/
@@ -93,6 +100,8 @@ tools and resources:
 [xarray]: https://docs.xarray.dev/en/stable/
 [sphinx]: https://www.sphinx-doc.org/en/master/
 [rtd]: https://readthedocs.org
+[python_packaging]: https://carpentries-incubator.github.io/python_packaging/index.html
+[plasmafair]: https://plasmafair.github.io
 
 Background: Miller Geometry
 ===========================

@@ -43,8 +43,8 @@ Let's do a little bit of housekeeping first.
 
 - Install the `black` formatter and the `ruff` linter using `pip`
 - Run `black` -- what has it changed?
-- Run `ruff` and fix the issues
-- Run these tools frequently
+- Run `ruff` -- what are the issues? Fix them
+- Run these tools frequently!
 
 **Advanced:**
 
@@ -174,6 +174,8 @@ There are two main styles for Python docstrings, but I much prefer
 - Pass an optional `ax` argument to `plot_surface`. If `ax is not
   None`, plot to that axis, otherwise create a [new figure and
   axis][subplots] and plot to that. Return the actual axis you used
+    - This is a useful technique for both quickly plotting with a new
+      figure and also overplotting results onto existing figures
 
 
 [subplots]: (https://matplotlib.org/stable/users/explain/figures.html#creating-figures)

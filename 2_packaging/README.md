@@ -149,18 +149,31 @@ script_name = "package.module:function"
 ```
 
 Now when we install our package, `script_name` will get installed as
-an executable that runs `package.module.function()`. And now we
+an executable[^1] that runs `package.module.function()`. And now we
 discover the reason for wrapping up our script functions in one more
 function `main`.
+
+[^1]: Two things to note here:
+  1. The executable will be called `script_name`, that is, you can call it by
+     running `script_name`
+  2. If you're not using a virtual environment, the executable will be installed
+     in `~/.local/bin` by default, which might not be in your `$PATH` and so
+     you'll have to edit your `~/.profile` to include:
+
+     ```bash
+     export PATH=$HOME/.local/bin:$PATH
+     ```
 
 1. Add an entry point called `miller` that calls your `main` function.
 2. To make it available, you'll need to reinstall your package
    - Don't forget to install with `--editable` so that future changes
      to the code will get picked up
+3. Check it works by running `miller` from the command line
+   - Try changing directory and running it somewhere else
 
 Now we're back to where we started, with a script we can call from the
 command line! Except now we have something that we can use in other
-tools, and is also to get installed -- useful not just for other
+tools, and is also easier to get installed -- useful not just for other
 people, but for us too if we start using other machines.
 
 

@@ -64,7 +64,7 @@ Metadata
 --------
 
 There is now a standard metadata format for Python packages (described
-in [PEP518][PEP518]) which is specified in the `pyproject.toml`
+in [PEP621][PEP621]) which is specified in the `pyproject.toml`
 file. [TOML](https://toml.io/en/) is a popular file format that has a
 well defined syntax and semantics, and is pretty easy to read.
 
@@ -158,6 +158,6 @@ tools, and is also to get installed -- useful not just for other
 people, but for us too if we start using other machines.
 
 
-[PEP518]: https://peps.python.org/pep-0518
+[PEP621]: https://peps.python.org/pep-0621
 [PEP631]: https://peps.python.org/pep-0631
 [setuptools_scm]: https://github.com/pypa/setuptools_scm/

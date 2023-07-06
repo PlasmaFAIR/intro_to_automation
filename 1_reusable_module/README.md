@@ -37,12 +37,20 @@ Let's do a little bit of housekeeping first.
 3. Let's also add `miller.png` to the end of our `.gitignore`
 4. Commit it!
 5. Run the step 1 tests again -- you should get another passing test
+    - If you don't, check `git status`
 
 **Bonus:**
 
-- Install `black` and `ruff` using `pip`
-- Run `black`
+- Install the `black` formatter and the `ruff` linter using `pip`
+- Run `black` -- what has it changed?
 - Run `ruff` and fix the issues
+- Run these tools frequently
+
+**Advanced:**
+
+- Set up your editor or IDE to run `black` and `ruff` automatically
+    - Your editor/IDE might have `flake8` or `pylint` integration,
+      which are similar tools to `ruff`
 
 
 Making things reusable

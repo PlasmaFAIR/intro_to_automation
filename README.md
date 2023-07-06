@@ -36,6 +36,14 @@ exercise. The tests will start off all failing, and successfully
 completing each exercise will make more and more tests pass. You can
 use this to assess your progress through the whole tutorial.
 
+There are some **bonus** and **advanced** exercises throughout this
+tutorial. Bonus exercises are good to go through if you find you have
+some extra time during the session, and are about techniques that are
+generally useful to most people. Advanced exercises, on the other
+hand, are usually a bit more specialist, or require a bit more time
+and/or research to implement. They are good next steps for the
+interested learner to look into after the session.
+
 Background: Miller Geometry
 ===========================
 

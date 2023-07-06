@@ -41,6 +41,9 @@ exercise. The tests will start off all failing, and successfully
 completing each exercise will make more and more tests pass. You can
 use this to assess your progress through the whole tutorial.
 
+You should regularly commit your work, at least after completing each
+exercise, possibly more frequently.
+
 There are some **bonus** and **advanced** exercises throughout this
 tutorial. Bonus exercises are good to go through if you find you have
 some extra time during the session, and are about techniques that are
@@ -48,6 +51,48 @@ generally useful to most people. Advanced exercises, on the other
 hand, are usually a bit more specialist, or require a bit more time
 and/or research to implement. They are good next steps for the
 interested learner to look into after the session.
+
+Next Steps
+----------
+
+We can't cover everything in this tutorial, but there is always
+something more to learn. After applying the techniques you've learnt
+here to your own projects, you might like to investigate the following
+tools and resources:
+
+- automate running tests with [GitHub actions][actions]
+    - This more generally falls under the names "Continuous Integration",
+      "Continuous Development", or "CI/CD"
+    - You can use CI to automate all sorts of things, such as
+      running formatters and linters, publishing packages, building
+      containers, and so on
+- self-describing output files using [netCDF][netcdf] or [HDF5][hdf5]
+    - These file formats are portable across systems, and can help
+      both structure and describe your data through labels with things
+      like units or plain language descriptions
+    - It's useful to store things like the exact input parameters, the
+      version of the code used, when the code was run, and other
+      metadata
+- better analysis using [Pandas][pandas] or [xarray][xarray]
+    - Pandas works very well with tabular data
+    - Xarray is designed for labelled, multi-dimensional data
+- documentation using [Sphinx][sphinx] and [ReadTheDocs][rtd]
+    - Sphinx uses ReStructuredText (a kind of text markup, like LaTeX
+      or HTML) to make documentation websites from source code
+    - Sphinx can also automatically pull out docstrings from Python
+      packages to make API documentation (there are plugins for other
+      languages too)
+    - ReadTheDocs hosts and automatically generates websites using
+      Sphinx (the [xarray][xarray] docs, for instance, are written in
+      Sphinx and built with ReadTheDocs)
+
+[actions]: https://docs.github.com/en/actions
+[netcdf]: https://www.unidata.ucar.edu/software/netcdf/
+[hdf5]: https://www.hdfgroup.org/solutions/hdf5/
+[pandas]: https://pandas.pydata.org
+[xarray]: https://docs.xarray.dev/en/stable/
+[sphinx]: https://www.sphinx-doc.org/en/master/
+[rtd]: https://readthedocs.org
 
 Background: Miller Geometry
 ===========================

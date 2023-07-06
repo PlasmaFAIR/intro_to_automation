@@ -96,7 +96,13 @@ specifying dependencies in `pyproject.toml`.
 **Bonus:**
 
 - Add `pytest` as an optional dependency named `tests`
+- Install the `tests` optional dependency
+
+**Advanced:**
+
 - Use [`setuptools_scm`][setuptools_scm] to dynamically set the version
+    - There are a few moving parts to this!
+
 
 Virtual environments
 --------------------
@@ -160,4 +166,4 @@ people, but for us too if we start using other machines.
 
 [PEP621]: https://peps.python.org/pep-0621
 [PEP631]: https://peps.python.org/pep-0631
-[setuptools_scm]: https://github.com/pypa/setuptools_scm/
+[setuptools_scm]: https://github.com/pypa/setuptools_scm/#pyprojecttoml-usage

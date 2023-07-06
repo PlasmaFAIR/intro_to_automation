@@ -20,16 +20,21 @@ Python knowledge. While this tutorial uses Python, many of the
 techniques we'll go through are more broadly applicable to most other
 programming languages.
 
+You'll also need to be able to use `git` for version control.
+
 Overview
 --------
 
 Start by forking this project on GitHub, and cloning it locally. Then
-work through the four steps:
+work through the exercises in each of the four steps:
 
 1. Reusable module
 2. Packaging
 3. Input
 4. Testing
+
+You might find it easiest to view the exercises by looking at the
+`README.md` file in each directory on GitHub, rather than locally.
 
 Each step comes with a set of tests that you should run after each
 exercise. The tests will start off all failing, and successfully

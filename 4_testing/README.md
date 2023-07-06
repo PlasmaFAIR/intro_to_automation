@@ -10,7 +10,8 @@ tests that we can write and different ways that we can tackle this
 issue.
 
 You might notice that there are no tests in this directory -- that's
-because you're going to be writing them!
+because you're going to be writing them! How will you know if the
+tests themselves are correct? That is, unfortunately, a Hard Problem!
 
 
 Simple Cases

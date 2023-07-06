@@ -4,10 +4,18 @@ import shutil
 import subprocess
 import sys
 
+import pytest
+
 top_level_dir = pathlib.Path(__file__).parent.parent
 script = top_level_dir / "miller.py"
 
 
+def already_moved_script() -> bool:
+    module = top_level_dir / "src" / "miller" / "__init__.py"
+    return not script.exists() and module.exists()
+
+
+@pytest.mark.skipif(already_moved_script(), reason="Script already moved to package")
 def test_fixed_path(tmp_path):
     shutil.copy(script, tmp_path)
     subprocess.run(["python3", "miller.py"], check=True, cwd=tmp_path)
@@ -15,6 +23,7 @@ def test_fixed_path(tmp_path):
     assert expected_graph.is_file(), f"'miller.png' not created in {tmp_path}"
 
 
+@pytest.mark.skipif(already_moved_script(), reason="Script already moved to package")
 def test_no_uncommitted_files():
     status = subprocess.run(
         ["git", "status"], check=True, capture_output=True, text=True

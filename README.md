@@ -5,6 +5,9 @@
 href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons
 Attribution-ShareAlike 4.0 International License</a>.
 
+![PlasmaFAIR logo](https://plasmafair.github.io/images/full_plus_small_logo.png)
+
+
 Automate Your PhD
 =================
 

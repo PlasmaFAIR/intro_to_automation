@@ -9,12 +9,20 @@ version control (`*.pyc` and `__pycache__`, `miller.png`, and so on).
 Hardcoded absolute paths
 ------------------------
 
-The script contains a hardcoded absolute path, which makes it
-difficult to run anywhere except the original author's machine.
+The script contains a hardcoded absolute path, which makes it very
+unlikely to run anywhere except the original author's machine. You
+should try to completely avoid absolute paths in your code -- they're
+almost never needed. Instead, use relative paths, or -- even better --
+allow the user to set paths at runtime.
+
+> [!NOTE]
+> Absolute paths are those that start with `/` on Linux/Mac, or with a
+> drive letter like `C:\` on Windows. Relative paths are _relative_ to
+> the current directory.
 
 1. Change the absolute path to a relative path
 2. Check that it now works, and commit your change
-3. Install `pytest`: `pip install pytest`
+
 4. Run the tests for the first step with: `pytest -k step1`
    - You should only have one passing test at this point!
 
@@ -41,16 +49,18 @@ Let's do a little bit of housekeeping first.
 
 **Bonus:**
 
-- Install the `black` formatter and the `ruff` linter using `pip`
-- Run `black` -- what has it changed?
-- Run `ruff` -- what are the issues? Fix them
+- Install the `ruff` linter using `uv pip install ruff`
+- Run `ruff format` -- what has it changed?
+- Run `ruff check` -- what are the issues? Fix them
 - Run these tools frequently!
 
 **Advanced:**
 
-- Set up your editor or IDE to run `black` and `ruff` automatically
+- Set up your editor or IDE to run `ruff format` and `ruff check`
+  automatically
     - Your editor/IDE might have `flake8` or `pylint` integration,
-      which are similar tools to `ruff`
+      which are similar tools to `ruff check`
+    - It might also have one for `black` instead of `ruff format`
 
 
 Making things reusable

@@ -18,10 +18,20 @@ flexible, and can be used to automate your research.
 Requirements
 ------------
 
-You'll need Python 3.8+ and `pip` installed, and a moderate amount of
-Python knowledge. While this tutorial uses Python, many of the
-techniques we'll go through are more broadly applicable to most other
-programming languages.
+We'll be using [uv](https://docs.astral.sh/uv/) to manage our Python
+environment. Follow the installation instructions there and check that
+you can run:
+
+```console
+$ uv --version
+uv 0.5.7
+```
+
+You might have a more recent version, that's fine.
+
+You'll also need a moderate amount of Python knowledge. While this
+tutorial uses Python, many of the techniques we'll go through are more
+broadly applicable to most other programming languages.
 
 You'll also need to be able to use `git` for version control.
 
@@ -29,12 +39,13 @@ Overview
 --------
 
 Start by forking this project on GitHub, and cloning it locally. Then
-work through the exercises in each of the four steps:
+work through the exercises in each of the subdirectories:
 
-1. Reusable module
-2. Packaging
-3. Input
-4. Testing
+0. [Setup](0_setup)
+1. [Reusable module](1_resuable_module)
+2. [Packaging](2_packaging)
+3. [Input](3_inputs)
+4. [Testing](4_testing)
 
 You might find it easiest to view the exercises by looking at the
 `README.md` file in each directory on GitHub, rather than locally.

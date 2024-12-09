@@ -113,15 +113,11 @@ specifying dependencies in `pyproject.toml`.
 Virtual environments
 --------------------
 
-Virtual environments are a really useful tool for working on different
-projects. They allow you to install python packages without affecting
-your whole environment. This way, you can install incompatible
-versions of packages for different projects, for instance.
-
-Virtual environments are also very useful for development. You can
-install an "editable" version of your package while you work on it in
-one virtual environment, and then install a fixed version in another
-environment to use for real work.
+We set up a virtual environment in Step 1 to make sure we had all of
+our dependencies installed. Virtual environments are also very useful
+for development. You can install an "editable" version of your package
+while you work on it in one virtual environment, and then install a
+fixed version in another environment to use for real work.
 
 1. Create a virtual environment with `python3 -m venv <name>` (I
    usually use the imaginative name "venv")

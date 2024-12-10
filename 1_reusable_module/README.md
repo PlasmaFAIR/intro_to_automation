@@ -29,7 +29,12 @@ allow the user to set paths at runtime.
 Housekeeping
 ------------
 
-Let's do a little bit of housekeeping first.
+Let's do a little bit of housekeeping next. Now that you've got the
+script running, we don't want to litter the project with its
+outputs. While it's good to use `git` to keep track of your work, it's
+also much tidier to have separate repositories for your code and
+_using_ your code. `git` uses a `.gitignore` file in your project top
+directory to list files and patterns
 
 1. Clone https://github.com/github/gitignore somewhere else
 2. Copy the contents of `Python.gitignore` and
@@ -46,6 +51,8 @@ Let's do a little bit of housekeeping first.
 4. Commit it!
 5. Run the step 1 tests again -- you should get another passing test
     - If you don't, check `git status`
+    - If you have a `uv.lock` file, you should add this and keep it
+      under version control
 
 **Bonus:**
 
@@ -80,6 +87,12 @@ becomes:
 def do_some_maths(parameter=10):
     return some_maths(parameter)
 ```
+
+Wrapping code up into functions lets us do things like parameter
+scans, optimisation, integration -- any more importantly, testing. It
+also makes it much easier for other people to build on top of our
+code. Writing good, modular functions is fundamental to good software
+of any kind.
 
 If you also plot graphs in your script, it's a really good idea to put
 them in separate function(s) from the rest of your code. This way, if
@@ -166,18 +179,20 @@ do_maths(parameter=10)
         The maths parameter
 ```
 
+Tools like [Sphinx](https://www.sphinx-doc.org/en/master/) and
+[mkdocs](https://www.mkdocs.org) can also automatically pull out
+docstrings and make pretty documentation websites.
+
 There are two main styles for Python docstrings, but I much prefer
 [numpydoc](https://numpydoc.readthedocs.io/en/latest/format.html).
 
 1. Create two functions: `flux_surface` and `plot_surface`
-2. `flux_surface` should take `A`, `kappa`, `delta`, and `R0` as
-   inputs, with default values as the current hardcoded ones, and
-   return `R_s, Z_s`
-3. `plot_surface` should take `R_s` and `Z_s`
-4. Add docstrings to the two functions
-5. Wrap up both functions in a third function `main`
-6. Use the `__main__` idiom to run `main`
-7. Run the step 1 tests again -- now everything should pass
+   - What arguments should they take?
+   - What should they return?
+1. Add docstrings to the two functions
+1. Wrap up both functions in a third function `main`
+1. Use the `__main__` idiom to run `main`
+1. Run the step 1 tests again -- now everything should pass
 
 **Bonus:**
 

@@ -43,13 +43,37 @@ $ uv python install 3.11
 This is the fastest way to stay up-to-date with Python versions,
 whatever system you're on.
 
+We can create a new virtual environment with:
+
+```console
+$ uv venv
+Using CPython 3.11.10
+Creating virtual environment at: .venv
+Activate with: source .venv/bin/activate
+```
+
+The output tells you the version of Python used (which should be the
+latest available -- use `--python 3.13` for example, to use a specific
+version), the directory the environment was created in (`.venv`), and
+how to activate the venv (different on Windows and Linux/Mac).
+
+The `.venv` directory basically stores a copy of the `python`
+executable and all the packages you install in the virtual environment
+(actually, it stores hardlinks/shortcuts to them to save space and
+time), and some scripts to change your environment variables to point
+to these copies. Run `deactivate` to deactivate the venv.
+
+Venvs are lightweight and throwaway -- if you ever get your packages
+in a mess for whatever reason, just delete the `.venv` directory and
+make a new one.
+
 `uv` is also a drop-in replacement for `pip`: inside a `uv` venv, we
 can use `uv pip ...` instead of `pip` and get a big speed-up.
 
 1. Create a virtual environment with `uv venv`
-2. Activate the environment with `source .venv/bin/activate`
-3. Install numpy and pytest with `uv pip install numpy pytest`
+2. Activate the environment following the instructions
+3. Install numpy, matplotlib, and pytest with `uv pip install numpy matplotlib pytest`
 4. Run `pytest -k step0` to check you have everything set up correctly
-   - If the test fails with "numpy not installed", try `uv run pytest
-     -k step0` -- your shell might be picking up the wrong version of
-     `pytest`
+   - If the test fails with "Virtual environment not activated", you
+     might have another version of pytest installed which is being
+     picked up. Try running `deactivate` and re-activating the venv

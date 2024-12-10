@@ -1,7 +1,6 @@
 import importlib.util
 import pathlib
 import subprocess
-import sys
 import venv
 
 top_level_dir = pathlib.Path(__file__).parent.parent
@@ -36,10 +35,6 @@ def test_install(tmp_path):
     """
     status = subprocess.run(command, shell=True, capture_output=True, text=True)
     assert status.returncode == 0, status.stderr
-
-
-def test_in_virtual_environment():
-    assert sys.prefix != sys.base_prefix, "Not currently in a virtual environment"
 
 
 def test_local_import():

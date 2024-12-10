@@ -1,6 +1,9 @@
+from importlib.metadata import entry_points
 import importlib.util
 import pathlib
 import subprocess
+
+import pytest
 
 top_level_dir = pathlib.Path(__file__).parent.parent
 
@@ -44,6 +47,11 @@ def test_local_import():
 
 
 def test_entry_point(tmp_path):
+    pytest.importorskip("miller")
+
+    miller = entry_points(group="console_scripts", name="miller")
+    assert miller, "'console_scripts' not set in 'pyproject.toml'"
+
     run_miller = subprocess.run(["miller"], text=True, cwd=tmp_path)
     assert run_miller.returncode == 0, f"Couldn't run `miller`: {run_miller.stderr}"
 

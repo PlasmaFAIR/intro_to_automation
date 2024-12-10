@@ -1,3 +1,4 @@
+import importlib
 import pathlib
 import sys
 
@@ -15,13 +16,16 @@ def test_step0(tmp_path, monkeypatch):
         sys.version_info.minor >= 11
     ), f"Using Python 3.{sys.version_info.minor} and not >= 3.11, make sure you've used `uv` to install a newer version"
 
-    try:
-        import numpy
-    except ModuleNotFoundError:
-        assert False, "numpy not installed (or pytest not running in correct venv)"
+    has_numpy = importlib.util.find_spec("numpy")
+    assert has_numpy, "numpy not installed (or pytest not running in correct venv)"
+    has_matplotlib = importlib.util.find_spec("matplotlib")
+    assert (
+        has_matplotlib
+    ), "matplotlib not installed (or pytest not running in correct venv)"
 
     monkeypatch.syspath_prepend(top_level_dir)
     try:
-        import miller
+        # We want to actually import the file and observe its side-effects
+        import miller  # noqa: F401
     except FileNotFoundError:
         return

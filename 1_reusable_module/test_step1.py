@@ -18,7 +18,7 @@ def already_moved_script() -> bool:
 @pytest.mark.skipif(already_moved_script(), reason="Script already moved to package")
 def test_fixed_path(tmp_path):
     shutil.copy(script, tmp_path)
-    subprocess.run(["python3", "miller.py"], check=True, cwd=tmp_path)
+    subprocess.run(["python", "miller.py"], check=True, cwd=tmp_path)
     expected_graph = pathlib.Path(tmp_path) / "miller.png"
     assert expected_graph.is_file(), f"'miller.png' not created in {tmp_path}"
 
@@ -49,3 +49,16 @@ def test_has_functions():
     plot_surface = getattr(miller, "plot_surface", None)
     assert callable(plot_surface), "Module missing function 'plot_surface'"
     assert plot_surface.__doc__, "'plot_surface' missing docstring"
+
+
+@pytest.mark.skipif(already_moved_script(), reason="Script already moved to package")
+def test_no_ruff_warnings(tmp_path):
+    pytest.importorskip("ruff")
+
+    shutil.copy(script, tmp_path)
+
+    output = subprocess.run(["ruff", "check", tmp_path])
+    assert output.returncode == 0, "ruff check had some warnings"
+
+    output = subprocess.run(["ruff", "format", "--check", tmp_path])
+    assert output.returncode == 0, "ruff format modified file"

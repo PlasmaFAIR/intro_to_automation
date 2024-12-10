@@ -1,7 +1,6 @@
 import importlib.util
 import pathlib
 import subprocess
-import venv
 
 top_level_dir = pathlib.Path(__file__).parent.parent
 
@@ -25,11 +24,13 @@ def test_project_structure():
 
 
 def test_install(tmp_path):
-    venv.create(tmp_path / "venv", with_pip=True, symlinks=True)
+    pyproject_toml = top_level_dir / "pyproject.toml"
+    assert pyproject_toml.exists(), "Missing 'pyproject.toml' file at top level"
+
+    subprocess.run(["uv", "venv"], cwd=tmp_path, check=True)
     command = f"""
-    source {tmp_path}/venv/bin/activate;
-    python -m pip install --upgrade pip
-    python -m pip install {top_level_dir}
+    source {tmp_path}/.venv/bin/activate;
+    uv pip install {top_level_dir}
     cd {tmp_path}
     python -c 'import miller'
     """
@@ -43,6 +44,8 @@ def test_local_import():
 
 
 def test_entry_point(tmp_path):
-    subprocess.run(["miller"], text=True, check=True, cwd=tmp_path)
+    run_miller = subprocess.run(["miller"], text=True, cwd=tmp_path)
+    assert run_miller.returncode == 0, f"Couldn't run `miller`: {run_miller.stderr}"
+
     expected_graph = pathlib.Path(tmp_path) / "miller.png"
     assert expected_graph.is_file(), f"'miller.png' not created in {tmp_path}"

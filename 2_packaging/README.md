@@ -38,7 +38,12 @@ find the right files because this tutorial has some extra directories:
 ```
 
 This way, when building the package, only the modules under `src` are
-found, and everything else is automatically ignored.
+found, and everything else is automatically ignored. It's still
+possible to use the first layout (without `src`), but it requires some
+manual configuration.
+
+<!-- TODO: README and LICENCE -->
+<!-- TODO: Have students use a subdirectory for the project? -->
 
 We also rename the file to `__init__.py` so that our functions are
 immediately available when we do `import miller`.
@@ -64,8 +69,9 @@ file. [TOML](https://toml.io/en/) is a popular file format that has a
 well defined syntax and semantics, and is pretty easy to read.
 
 A `pyproject.toml` file consists of tables denoted by square brackets
-`[]`, and key-value pairs separated by an equals sign `=`. The minimum
-file has one table, `[project]`, and two keys, `name` and `version`:
+`[]`, and key-value pairs separated by an equals sign `=`. The
+absolute bare minimum file has one table, `[project]`, and two keys,
+`name` and `version`:
 
 ```toml
 [project]
@@ -76,18 +82,87 @@ version = "0.1.0"
 Note that the key names are bare and the values here are in
 double-quotes `""` because they are strings.
 
-This is enough to be able to install your package with `uv pip install
-.`, but there are a couple more useful keys and tables. `dependencies`
-is a list of other packages required to run your package,
-`[project.optional-dependencies]` is a table specifying other packages
-that are useful but not required, for example for tests or
-documentation. [PEP631][PEP631] describes the standard for specifying
-dependencies in `pyproject.toml`.
+As well as metadata about your project, one of the most important
+functions of this file is to list the dependencies required to run (or
+build) your code. For example, for working with data from MAST-U, you
+might be using [UDA](https://ukaea.github.io/UDA/). By including this
+in the list of dependencies in `pyproject.toml`, installers like `uv`
+and `pip` will ensure that it is installed at the same time as your
+code:
+
+```toml
+[project]
+dependencies = ["uda"]
+```
+
+You can also specify which versions of dependencies your code will
+work with. For example, maybe you use a function which was only added
+in `scipy` 1.8 -- or maybe you're still using a class that was removed
+in `numpy` 2.0:
+
+```toml
+[project]
+dependencies = [
+    "scipy >= 1.8",
+    "numpy < 2.0.0",
+]
+```
+
+Should you specify dependency versions in your `pyproject.toml`? And
+if so, what versions should you use? Most of the time, all your
+dependencies will work fine together, but if there are clashes between
+_their_ dependencies it can be a real headache! There is a standard to
+alleviate this in the scientific python ecosystem (numpy, scipy,
+matplotlib, and so on) by supporting a set of minimum versions, called
+[SPEC-0](https://scientific-python.org/specs/spec-0000/). Unless you
+really, really need to work with older versions, following SPEC-0 is a
+sensible suggestion.
+
+The `uv.lock` file that `uv` creates is essentially a big list of the
+exact versions of all your direct and indirect dependencies (the
+dependencies of your dependencies). `uv` uses this file to keep things
+consistent across platforms and machines. You should keep this under
+version control, but otherwise you can safely ignore it.
+
+You might also notice that SPEC-0 specifies a minimum version of
+Python to support. Dropping support for older versions of python
+allows libraries to use newer features and benefit from performance
+improvements without waiting 5 years or more. The `requires-python`
+key under `[project]` allows developers to specify what versions of
+Python they support. This helps stop unexpected breakages from using
+the wrong version.
+
+One more useful feature is the ability to have optional
+dependencies. This is often used if tests need extra libraries, for
+instance, which wouldn't be useful to most users; or for optional
+features that only a subset of users are interested in. For example,
+`xarray` has an optional `parallel` dependency set, for parallelising
+computations. Optional dependencies are specified in your
+`pyproject.toml` like so:
+
+```toml
+[project.optional-dependencies]
+accel = ["scipy", "bottleneck", "numbagg", "numba>=0.54", "flox", "opt_einsum"]
+parallel = ["dask[complete]"]
+```
+
+and installed by naming them like this: `xarray[parallel]`; for
+example with `uv`:
+
+```console
+$ uv pip install xarray[parallel]
+```
+
+(you can see another example above in xarray's `pyproject.toml`).
+
+[PEP631][PEP631] describes the standard for specifying dependencies in
+`pyproject.toml`.
 
 ### Tasks
 
 1. Create a minimal `pyproject.toml`
 2. Add the dependencies `numpy` and `matplotlib`
+   - Check that the versions you use conform to SPEC-0
 3. Run the `step2` tests using `pytest`
 
 **Bonus:**
@@ -98,35 +173,37 @@ dependencies in `pyproject.toml`.
 **Advanced:**
 
 - Use [`importlib_metadata`][importlib_metadata] to set `__version__`
-    - This is included in the standard library for Python >= 3.8 as
-      `importlib.metadata` with the same interface, just a (slightly!) different
-      name
     - Hint: In `__init__.py`, `__name__` is the name of the package
 - Use [`setuptools_scm`][setuptools_scm] to dynamically set the version
     - There are a few moving parts to this, and a couple of gotchas around
       editable installs!
 
+> [!NOTE]
+> When starting new projects, check out [`uv
+> init`](https://docs.astral.sh/uv/concepts/projects/init/) to quickly
+> create the basic structure, and [`uv
+> add`](https://docs.astral.sh/uv/concepts/projects/dependencies/#dependency-tables)
+> to manage dependencies!
 
 Virtual environments
 --------------------
 
-We set up a virtual environment in Step 1 to make sure we had all of
-our dependencies installed. Virtual environments are also very useful
-for development. You can install an "editable" version of your package
-while you work on it in one virtual environment, and then install a
-fixed version in another environment to use for real work.
+We already set up a virtual environment in Step 0 to make sure we had
+all of our dependencies installed. Virtual environments are also very
+useful for development. You can install an "editable" version of your
+package while you work on it in one virtual environment, and then
+install a fixed version in another environment to use for real work.
+
 ### Tasks
 
 1. Install your project using the `--editable` flag
    - `pip` can install from local paths (as well as package names from
      PyPI, the usual, and URLs of Github projects too), you can use
      the Unix shortcut `.` to refer to the current directory
-   - You'll probably also need to install `pytest` from inside the
-     virtual environment as well to pass some of the tests
    - If you completed the bonus exercises adding `pytest` as an
      optional dependency, you can install it automatically with
      `.[tests]` as the path
-4. Run the tests
+2. Run the tests as usual!
 
 Entry points and scripts
 ------------------------
@@ -144,6 +221,8 @@ syntax:
 [project.scripts]
 script_name = "package.module:function"
 ```
+
+Note the colon `:` between `module` and `function`!
 
 Now when we install our package, `script_name` will get installed as
 an executable[^1] that runs `package.module.function()`. And now we
@@ -172,8 +251,9 @@ function `main`.
 
 Now we're back to where we started, with a script we can call from the
 command line! Except now we have something that we can use in other
-tools, and is also easier to get installed -- useful not just for other
-people, but for us too if we start using other machines.
+tools, and is also easier to get installed along with all of its
+dependencies -- useful not just for other people, but for us too if we
+start using other machines.
 
 
 [PEP621]: https://peps.python.org/pep-0621

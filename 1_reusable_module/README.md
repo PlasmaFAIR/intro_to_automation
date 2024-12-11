@@ -187,8 +187,8 @@ Tools like [Sphinx](https://www.sphinx-doc.org/en/master/) and
 [mkdocs](https://www.mkdocs.org) can also automatically pull out
 docstrings and make pretty documentation websites.
 
-There are two main styles for Python docstrings, but I much prefer
-[numpydoc](https://numpydoc.readthedocs.io/en/latest/format.html).
+There are two main styles for Python docstrings, but personally I much
+prefer [numpydoc](https://numpydoc.readthedocs.io/en/latest/format.html).
 
 ### Tasks
 
@@ -199,6 +199,8 @@ There are two main styles for Python docstrings, but I much prefer
 1. Wrap up both functions in a third function `main`
 1. Use the `__main__` idiom to run `main`
 1. Run the step 1 tests again -- now everything should pass
+   - If you have issues with `matplotlib` not being able to find
+     `tkinter` or `tkagg`, trying using `uv` to install `PyQt6`
 
 **Bonus:**
 
@@ -208,5 +210,8 @@ There are two main styles for Python docstrings, but I much prefer
     - This is a useful technique for both quickly plotting with a new
       figure and also overplotting results onto existing figures
 
+**Advanced:**
+
+- Add type hinting to your new functions
 
 [subplots]: (https://matplotlib.org/stable/users/explain/figures.html#creating-figures)

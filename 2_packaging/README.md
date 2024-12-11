@@ -4,11 +4,6 @@ Packaging
 A package is a module, or collection of modules, along with some
 metadata that describes things like their dependencies.
 
-**Note:** one of the tests for this step, `test_install` can take
-~10-15 seconds to run, so don't worry if it takes awhile! You can use
-`pytest -k "step2 and not install"` to run the step 2 tests and skip
-just that one.
-
 Project structure
 -----------------
 
@@ -81,13 +76,13 @@ version = "0.1.0"
 Note that the key names are bare and the values here are in
 double-quotes `""` because they are strings.
 
-This is enough to be able to install your package with `python3 -m pip
-install .`, but there are a couple more useful keys and
-tables. `dependencies` is a list of other packages required to run
-your package, `[project.optional-dependencies]` is a table specifying
-other packages that are useful but not required, for example for tests
-or documentation. [PEP631][PEP631] describes the standard for
-specifying dependencies in `pyproject.toml`.
+This is enough to be able to install your package with `uv pip install
+.`, but there are a couple more useful keys and tables. `dependencies`
+is a list of other packages required to run your package,
+`[project.optional-dependencies]` is a table specifying other packages
+that are useful but not required, for example for tests or
+documentation. [PEP631][PEP631] describes the standard for specifying
+dependencies in `pyproject.toml`.
 
 1. Create a minimal `pyproject.toml`
 2. Add the dependencies `numpy` and `matplotlib`

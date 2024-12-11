@@ -20,6 +20,8 @@ allow the user to set paths at runtime.
 > drive letter like `C:\` on Windows. Relative paths are _relative_ to
 > the current directory.
 
+### Tasks
+
 1. Change the absolute path to a relative path
 2. Check that it now works, and commit your change
 
@@ -35,6 +37,8 @@ outputs. While it's good to use `git` to keep track of your work, it's
 also much tidier to have separate repositories for your code and
 _using_ your code. `git` uses a `.gitignore` file in your project top
 directory to list files and patterns
+
+### Tasks
 
 1. Clone https://github.com/github/gitignore somewhere else
 2. Copy the contents of `Python.gitignore` and
@@ -185,6 +189,8 @@ docstrings and make pretty documentation websites.
 
 There are two main styles for Python docstrings, but I much prefer
 [numpydoc](https://numpydoc.readthedocs.io/en/latest/format.html).
+
+### Tasks
 
 1. Create two functions: `flux_surface` and `plot_surface`
    - What arguments should they take?

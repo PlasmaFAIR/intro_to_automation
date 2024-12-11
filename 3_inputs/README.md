@@ -64,6 +64,7 @@ do_some_maths(**vars(args))
 although you may have to remove or add other arguments. As with
 everything in writing software, it depends!
 
+### Tasks
 
 1. Create an `argparse.ArgumentParser` in your `main` function
 2. Add arguments for `A`, `kappa`, `delta` and `R0`
@@ -117,6 +118,8 @@ Python dict. The simplest way to read a file is like this:
 with open(filename, "rb") as f:
     data = tomli.load(f)
 ```
+
+### Tasks
 
 1. Add `tomli` to your project dependencies, and then `pip install`
    your project to automatically download it

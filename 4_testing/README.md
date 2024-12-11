@@ -27,6 +27,8 @@ For the Miller parameterisation, when the aspect ratio, major radius,
 and elongation are all one and the triangularity is zero, the solution
 is a circle.
 
+### Tasks
+
 1. Create a file in this directory called `test_physics.py`
 2. Write a function `test_circle` that calls `flux_surface` with
    $`(A=1, R_0=1, \kappa=1, \delta=0)`$
@@ -51,6 +53,8 @@ cases can often help us find bugs in our implementations.
 
 For our simple Miller parameterisation, flux surfaces are always
 up-down symmetric about $Z=0$.
+
+### Tasks
 
 1. Think how you would check this property visually. You might find it
    useful to make a plot that you can inspect this property by eye.
@@ -87,6 +91,8 @@ you _what_ went wrong, just that something has; if we fix a bug or
 make some other change that we expect to change the result, then we'll
 have to update the golden answer -- and we can't be sure we've made
 our original change correctly.
+
+### Tasks
 
 1. Write a golden answer test for some particular value of $`(A, R_0,
    \kappa, \delta)`$

@@ -70,6 +70,8 @@ make a new one.
 `uv` is also a drop-in replacement for `pip`: inside a `uv` venv, we
 can use `uv pip ...` instead of `pip` and get a big speed-up.
 
+### Tasks
+
 1. Create a virtual environment with `uv venv`
 2. Activate the environment following the instructions
 3. Install numpy, matplotlib, and pytest with `uv pip install numpy matplotlib pytest`

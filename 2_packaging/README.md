@@ -84,6 +84,8 @@ that are useful but not required, for example for tests or
 documentation. [PEP631][PEP631] describes the standard for specifying
 dependencies in `pyproject.toml`.
 
+### Tasks
+
 1. Create a minimal `pyproject.toml`
 2. Add the dependencies `numpy` and `matplotlib`
 3. Run the `step2` tests using `pytest`
@@ -113,11 +115,9 @@ our dependencies installed. Virtual environments are also very useful
 for development. You can install an "editable" version of your package
 while you work on it in one virtual environment, and then install a
 fixed version in another environment to use for real work.
+### Tasks
 
-1. Create a virtual environment with `python3 -m venv <name>` (I
-   usually use the imaginative name "venv")
-2. Activate the environment with `source <name>/bin/activate`
-3. Install your project using the `--editable` flag
+1. Install your project using the `--editable` flag
    - `pip` can install from local paths (as well as package names from
      PyPI, the usual, and URLs of Github projects too), you can use
      the Unix shortcut `.` to refer to the current directory
@@ -160,6 +160,8 @@ function `main`.
      ```bash
      export PATH=$HOME/.local/bin:$PATH
      ```
+
+### Tasks
 
 1. Add an entry point called `miller` that calls your `main` function.
 2. To make it available, you'll need to reinstall your package

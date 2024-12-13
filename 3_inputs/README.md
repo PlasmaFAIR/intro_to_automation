@@ -27,7 +27,7 @@ parser = argparse.ArgumentParser(
 Next, add arguments to the parser:
 
 ```python
-parser.add_argument("filename")  # positional argument
+parser.add_argument("filename", help="Help text")  # positional argument
 parser.add_argument("-c", "--count")  # option that takes a value
 parser.add_argument("-v", "--verbose", action="store_true")  # on/off flag
 ```
@@ -37,6 +37,27 @@ And then, finally, parse any command line arguments:
 ```python
 args = parser.parse_args()
 ```
+
+The above is sufficient to get a simple command-line program running:
+
+```console
+$ python3 example.py --help
+usage: ProgramName [-h] [-c COUNT] [-v] filename
+
+What the program does
+
+positional arguments:
+  filename              Help text
+
+options:
+  -h, --help            show this help message and exit
+  -c COUNT, --count COUNT
+  -v, --verbose
+
+Text at the bottom of help
+```
+
+You can see that `argparse` automatically added a `--help` argument for us!
 
 `args` is an [`argparse.Namespace`][namespace] object, and the
 argument values can be accessed as a normal attribute:
@@ -66,6 +87,8 @@ everything in writing software, it depends!
 
 ### Tasks
 
+Don't forget to run the tests!
+
 1. Create an `argparse.ArgumentParser` in your `main` function
 2. Add arguments for `A`, `kappa`, `delta` and `R0`
    - Prefer using the keyword form `--argument-name` when your program
@@ -73,9 +96,20 @@ everything in writing software, it depends!
      to read
    - The [`type`][argparse_type] argument to `add_argument` can be
      used to ensure the value is converted to the correct type
+   - Make sure you add the `help` argument to each call
 3. Parse the arguments and pass them through to `flux_surface`
+4. Try running your program manually and playing with the inputs
+5. We've still got a hardcoded filename -- let the user optionally set it
+   through a `--filename` argument, but have a sensible default.
 
 **Bonus:**
+
+- We always save the file and have to manually view it afterwards. Add a new
+  argument to automatically display the plot before saving it. We want a flag
+  that toggles on and off -- consult the `argparse` docs to see how to set the
+  `action`.
+
+**Advanced:**
 
 - If you set a version for your package, add a `--version` argument
   with the `store_true` action. If this is set, print the version and

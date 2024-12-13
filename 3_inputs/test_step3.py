@@ -24,6 +24,20 @@ def test_command_line_args(tmp_path):
     assert figure.is_file(), f"Missing figure at '{figure}'"
 
 
+def test_filename_argument(tmp_path):
+    out_filename = "test_output.png"
+    status = subprocess.run(
+        f"miller --filename {out_filename}",
+        shell=True,
+        cwd=tmp_path,
+        capture_output=True,
+        text=True,
+    )
+    assert status.returncode == 0, status.stderr
+    figure = tmp_path / out_filename
+    assert figure.is_file(), f"Missing figure at '{figure}'"
+
+
 def test_input_file(tmp_path):
     contents = textwrap.dedent(
         """

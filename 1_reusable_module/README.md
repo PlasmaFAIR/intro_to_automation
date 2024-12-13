@@ -3,8 +3,11 @@ Step 1: Reusable Module
 
 Our script currently has hardcoded parameters which makes reusing it
 difficult. We have to modify the file just to change the elongation,
-for example. It also creates files that we don't want to keep under
-version control (`*.pyc` and `__pycache__`, `miller.png`, and so on).
+for example. Although it might be set up for our current use case of
+making a single graph, it's much harder to use it for something novel
+-- for example, doing a parameter scan or optimising some physics. It
+also creates files that we don't want to keep under version control
+(`*.pyc` and `__pycache__`, `miller.png`, and so on).
 
 Hardcoded absolute paths
 ------------------------
@@ -195,12 +198,28 @@ prefer [numpydoc](https://numpydoc.readthedocs.io/en/latest/format.html).
 1. Create two functions: `flux_surface` and `plot_surface`
    - What arguments should they take?
    - What should they return?
+1. To enable reuse in more contexts, add another argument `savefig` to
+   `plot_surface`, defaulting to `True`, that controls whether or not
+   the figure is actually saved
 1. Add docstrings to the two functions
 1. Wrap up both functions in a third function `main`
 1. Use the `__main__` idiom to run `main`
 1. Run the step 1 tests again -- now everything should pass
    - If you have issues with `matplotlib` not being able to find
      `tkinter` or `tkagg`, trying using `uv` to install `PyQt6`
+1. The volume of an axisymmetric tokamak is proportional to the area
+   of its cross-section. We can numerically integrate the flux surface
+   to get the area:
+
+   ```
+   def area(r, z):
+       # abs because (r, z) start on the out-board midplace and r decreases
+       return np.abs(np.trapezoid(z, r))
+   ```
+
+   Using the Python terminal or a separate script, import `miller` and
+   make a plot of area vs delta
+   - What are sensible values of delta?
 
 **Bonus:**
 
@@ -209,6 +228,8 @@ prefer [numpydoc](https://numpydoc.readthedocs.io/en/latest/format.html).
   axis][subplots] and plot to that. Return the actual axis you used
     - This is a useful technique for both quickly plotting with a new
       figure and also overplotting results onto existing figures
+    - You may then need to switch from using the `plt` interface to
+      using the object-oriented approach (`plt.plot` -> `ax.plot`)
 
 **Advanced:**
 

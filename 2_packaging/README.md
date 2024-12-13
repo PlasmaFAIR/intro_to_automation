@@ -248,6 +248,7 @@ function `main`.
      to the code will get picked up
 3. Check it works by running `miller` from the command line
    - Try changing directory and running it somewhere else
+4. Run the step 2 tests
 
 Now we're back to where we started, with a script we can call from the
 command line! Except now we have something that we can use in other

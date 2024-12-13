@@ -57,7 +57,7 @@ def test_no_ruff_warnings(tmp_path):
 
     shutil.copy(script, tmp_path)
 
-    output = subprocess.run(["ruff", "check", tmp_path])
+    output = subprocess.run(["ruff", "check", tmp_path], capture_output=True)
     assert output.returncode == 0, "ruff check had some warnings"
 
     output = subprocess.run(["ruff", "format", "--check", tmp_path])

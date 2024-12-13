@@ -13,6 +13,47 @@ You might notice that there are no tests in this directory -- that's
 because you're going to be writing them! How will you know if the
 tests themselves are correct? That is, unfortunately, a Hard Problem!
 
+A quick refresher on basic pytest tests: pytest first looks for files
+named `test*.py`, and then looks for functions called `test_*` and
+runs them, gathering the output from any failed `assert`s and
+displaying them all at the end. A trivial test looks like:
+
+```
+def test_always_passes():
+    assert True
+
+def test_always_fails():
+    assert False
+```
+
+Most real tests looks something more like:
+
+```
+def test_simple():
+    expected = [1, 2, 3]
+    result = my_func()
+
+    assert result == expected
+```
+
+Comparing results from numerical calculations to exact numbers has
+some pitfalls, but luckily numpy has the handy
+[`numpy.testing.assert_allclose`][allclose] which checks that two
+arrays match within some tolerance, and prints useful information if
+they don't:
+
+```
+import numpy.testing as npt
+
+def test_numbers():
+    expected = [1.1, 2.2, 3.3]
+    result = my_func()
+
+    npt.assert_allclose(result, expected)
+```
+
+There's a lot more than pytest can do, but this is usually enough for
+most cases.
 
 Simple Cases
 ------------
@@ -29,14 +70,13 @@ is a circle.
 
 ### Tasks
 
-1. Create a file in this directory called `test_physics.py`
+1. Create a file in this directory called `test_step4.py`
 2. Write a function `test_circle` that calls `flux_surface` with
-   $`(A=1, R_0=1, \kappa=1, \delta=0)`$
-3. Use `assert` with numpy's particularly handy [`allclose`][allclose]
-   function to check that your result is a circle
-   - Note that your circle will not be centred at the origin, of
-     course
-4. Run your test with `pytest -k physics`
+   parameters for a circle
+   - You might want to plot this beforehand to check you have the
+     correct values!
+3. Use `assert_allclose` to check that your result is a circle
+4. Run your test with `pytest -k step4`
 
 
 Properties
@@ -69,11 +109,14 @@ up-down symmetric about $Z=0$.
 
 **Advanced:**
 
+- Use [`pytest.mark.parametrize`][pytest_parameters] to simplify your
+  test over multiple values
 - Use a property testing library such as [Hypothesis][hypothesis] to
   automatically generate edge cases. For this case, you'll have to use
   their [float strategy][hypothesis_float] with explicit min and max
   values
 
+[pytest_parameters]: https://docs.pytest.org/en/4.6.x/parametrize.html
 [hypothesis]: https://hypothesis.readthedocs.io
 [hypothesis_float]: https://hypothesis.readthedocs.io/en/latest/data.html#hypothesis.strategies.floats
 
@@ -97,4 +140,4 @@ our original change correctly.
 1. Write a golden answer test for some particular value of $`(A, R_0,
    \kappa, \delta)`$
 
-[allclose]: https://numpy.org/doc/stable/reference/generated/numpy.allclose.html
+[allclose]: https://numpy.org/doc/stable/reference/generated/numpy.testing.assert_allclose.html

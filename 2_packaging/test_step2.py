@@ -2,6 +2,7 @@ from importlib.metadata import entry_points
 import importlib.util
 import pathlib
 import subprocess
+import tomllib
 
 import pytest
 
@@ -26,10 +27,25 @@ def test_project_structure():
     assert correct_name.is_file(), f"Expected '{correct_name}', have you made a tpyo?"
 
 
-def test_install(tmp_path):
+def test_pyproject_toml():
     pyproject_toml = top_level_dir / "pyproject.toml"
     assert pyproject_toml.exists(), "Missing 'pyproject.toml' file at top level"
 
+    with pyproject_toml.open("rb") as f:
+        contents = tomllib.load(f)
+
+    assert "project" in contents, "Missing 'project' table"
+    project = contents["project"]
+    assert "name" in project, "Missing 'project.name'"
+    assert "version" in project, "Missing 'project.version'"
+    assert "dependencies" in project, "Missing 'project.dependencies'"
+    dependencies = project["dependencies"]
+    for lib in ("numpy", "matplotlib"):
+        has_lib = any([lib in dep for dep in dependencies])
+        assert has_lib, f"Missing {lib} from 'project.dependencies'"
+
+
+def test_install(tmp_path):
     subprocess.run(["uv", "venv"], cwd=tmp_path, check=True)
     command = f"""
     source {tmp_path}/.venv/bin/activate;
@@ -38,7 +54,9 @@ def test_install(tmp_path):
     python -c 'import miller'
     """
     status = subprocess.run(command, shell=True, capture_output=True, text=True)
-    assert status.returncode == 0, status.stderr
+    assert (
+        status.returncode == 0
+    ), "Couldn't install package, run 'pytest -vvv' for more info"
 
 
 def test_local_import():

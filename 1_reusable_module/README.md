@@ -235,4 +235,4 @@ prefer [numpydoc](https://numpydoc.readthedocs.io/en/latest/format.html).
 
 - Add type hinting to your new functions
 
-[subplots]: (https://matplotlib.org/stable/users/explain/figures.html#creating-figures)
+[subplots]: (https://matplotlib.org/stable/users/explain/figure/figure_intro.html#creating-figures)

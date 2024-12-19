@@ -18,7 +18,7 @@ def already_moved_script() -> bool:
 @pytest.mark.skipif(already_moved_script(), reason="Script already moved to package")
 def test_fixed_path(tmp_path):
     shutil.copy(script, tmp_path)
-    subprocess.run(["python", "miller.py"], check=True, cwd=tmp_path)
+    subprocess.run([sys.executable, "miller.py"], check=True, cwd=tmp_path)
     expected_graph = pathlib.Path(tmp_path) / "miller.png"
     assert expected_graph.is_file(), f"'miller.png' not created in {tmp_path}"
 

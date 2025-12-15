@@ -87,8 +87,8 @@ tools and resources:
     - It's useful to store things like the exact input parameters, the
       version of the code used, when the code was run, and other
       metadata
-- better analysis using [Pandas][pandas] or [xarray][xarray]
-    - Pandas works very well with tabular data
+- better analysis using [Polars][polars] or [xarray][xarray]
+    - Polars works very well with tabular data
     - Xarray is designed for labelled, multi-dimensional data
 - documentation using [Sphinx][sphinx] and [ReadTheDocs][rtd]
     - Sphinx uses ReStructuredText (a kind of text markup, like LaTeX
@@ -110,7 +110,7 @@ course was written by Liam Pattinson, another member of
 [actions]: https://docs.github.com/en/actions
 [netcdf]: https://www.unidata.ucar.edu/software/netcdf/
 [hdf5]: https://www.hdfgroup.org/solutions/hdf5/
-[pandas]: https://pandas.pydata.org
+[pandas]: https://pola.rs
 [xarray]: https://docs.xarray.dev/en/stable/
 [sphinx]: https://www.sphinx-doc.org/en/master/
 [rtd]: https://readthedocs.org

@@ -95,7 +95,7 @@ def do_some_maths(parameter=10):
     return some_maths(parameter)
 ```
 
-Wrapping code up into functions lets us do things like parameter
+"Wrapping up" code into functions lets us do things like parameter
 scans, optimisation, integration -- any more importantly, testing. It
 also makes it much easier for other people to build on top of our
 code. Writing good, modular functions is fundamental to good software
@@ -141,7 +141,7 @@ With these two changes, we can now use our module both as a script as
 before, _and_ `import` it to use in other code.
 
 For various reasons that we'll come to later, it's also a good idea
-to wrap up our functions in a single function, and call _that_ as our
+to call our functions from a single function, and call _that_ as our
 script code:
 
 ```python
@@ -202,8 +202,8 @@ prefer [numpydoc](https://numpydoc.readthedocs.io/en/latest/format.html).
    `plot_surface`, defaulting to `True`, that controls whether or not
    the figure is actually saved
 1. Add docstrings to the two functions
-1. Wrap up both functions in a third function `main`
-1. Use the `__main__` idiom to run `main`
+1. Call both functions from a third function `main`
+1. Use the `__name__ == "__main__"` idiom to run `main`
 1. Run the step 1 tests again -- now everything should pass
    - If you have issues with `matplotlib` not being able to find
      `tkinter` or `tkagg`, trying using `uv` to install `PyQt6`

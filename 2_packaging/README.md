@@ -136,7 +136,7 @@ One more useful feature is the ability to have optional
 dependencies. This is often used if tests need extra libraries, for
 instance, which wouldn't be useful to most users; or for optional
 features that only a subset of users are interested in. For example,
-`xarray` has an optional `parallel` dependency set, for parallelising
+[`xarray`][xarray] has an optional `parallel` dependency set, for parallelising
 computations. Optional dependencies are specified in your
 `pyproject.toml` like so:
 
@@ -211,10 +211,12 @@ install a fixed version in another environment to use for real work.
 Entry points and scripts
 ------------------------
 
-While we've now made it much easier to install our script and to use
-it as a module in other tools and software, we seem to have made it
-more difficult to use from the command line. To recover this ability,
-we can create an "entry point", a mechanism that aids discoverability.
+While we've now made it much easier to install our script and to use it as a
+module in other tools and software, we seem to have made it more difficult to
+use from the command line! To recover this ability, we can create an "entry
+point", a mechanism that aids discoverability. Entry points are "ways in" to our
+library or program, the functions that we expect users to call for normal
+workflows.
 
 To add a console script entry point, we need to add a key under the
 `[project.scripts]` table in `pyproject.toml` with the following
@@ -227,17 +229,23 @@ script_name = "package.module:function"
 
 Note the colon `:` between `module` and `function`!
 
-Now when we install our package, `script_name` will get installed as
-an executable[^1] that runs `package.module.function()`. And now we
-discover the reason for wrapping up our script functions in one more
-function `main`.
+Now when we install our package, `script_name` will get installed as an
+executable[^1] that runs `package.module.function()`. And now we discover the
+reason for having a single function `main` that just calls both of our script
+functions: `main` "wraps up" our functions into a common workflow that we can
+run from the command line, while more advanced users can still those functions
+directly from the library.
+
+More advanced uses of entry points are for things like plugins to libraries --
+for example, [`xarray`][xarray] defines a `backend` entry point that other
+packages can use to extend the types of files `xarray` can read.
 
 [^1]: Two things to note here:
   1. The executable will be called `script_name`, that is, you can call it by
      running `script_name`
   2. If you're not using a virtual environment, the executable will be installed
-     in `~/.local/bin` by default, which might not be in your `$PATH` and so
-     you'll have to edit your `~/.profile` to include:
+     in `~/.local/bin` by default on Linux, which might not be in your `$PATH`
+     and so you'll have to edit your `~/.profile` to include:
 
      ```bash
      export PATH=$HOME/.local/bin:$PATH
@@ -263,3 +271,4 @@ start using other machines.
 [PEP621]: https://peps.python.org/pep-0621
 [PEP631]: https://peps.python.org/pep-0631
 [setuptools_scm]: https://github.com/pypa/setuptools_scm/#pyprojecttoml-usage
+[xarray]: https://xarray.dev

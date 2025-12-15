@@ -18,7 +18,12 @@ flexible, and can be used to automate your research.
 Requirements
 ------------
 
-We'll be using [uv](https://docs.astral.sh/uv/) to manage our Python
+We'll be using the command line a bunch, so you'll need either a text editor and
+a terminal (built-in on Linux and Mac, or use [Git
+Bash](https://gitforwindows.org) on Windows), or an Integrated Development
+Environment (IDE) such as [VS Code](https://code.visualstudio.com/download).
+
+We'll also be using [uv](https://docs.astral.sh/uv/) to manage our Python
 environment. Follow the installation instructions there and check that
 you can run:
 

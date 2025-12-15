@@ -68,7 +68,7 @@ def test_entry_point(tmp_path):
     pytest.importorskip("miller")
 
     miller = entry_points(group="console_scripts", name="miller")
-    assert miller, "'console_scripts' not set in 'pyproject.toml'"
+    assert miller, "'project.scripts' not set in 'pyproject.toml'"
 
     run_miller = subprocess.run(["miller"], text=True, cwd=tmp_path)
     assert run_miller.returncode == 0, f"Couldn't run `miller`: {run_miller.stderr}"

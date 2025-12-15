@@ -163,7 +163,13 @@ $ uv pip install xarray[parallel]
 1. Create a minimal `pyproject.toml`
 2. Add the dependencies `numpy` and `matplotlib`
    - Check that the versions you use conform to SPEC-0
-3. Run the `step2` tests using `pytest`
+3. Install your project with `uv pip install .` from the top-level directory
+   (where the `pyproject.toml` is)
+   - `.` here is shell shorthand for "the current directory"
+   - You can also give `uv pip install` a relative or absolute local path to the
+     project on your computer, or a GitHub URL, as well as the more usual name
+     of package on [PyPI](https://pypi.org)
+4. Run the `step2` tests using `pytest`
 
 **Bonus:**
 
@@ -197,9 +203,6 @@ install a fixed version in another environment to use for real work.
 ### Tasks
 
 1. Install your project using the `--editable` flag
-   - `pip` can install from local paths (as well as package names from
-     PyPI, the usual, and URLs of Github projects too), you can use
-     the Unix shortcut `.` to refer to the current directory
    - If you completed the bonus exercises adding `pytest` as an
      optional dependency, you can install it automatically with
      `.[tests]` as the path

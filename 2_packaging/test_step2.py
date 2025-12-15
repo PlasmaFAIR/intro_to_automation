@@ -61,7 +61,7 @@ def test_install(tmp_path):
 
 def test_local_import():
     miller = importlib.util.find_spec("miller")
-    assert miller is not None, "'miller' not available as module"
+    assert miller is not None, "'miller' not available as module, have you installed your project?"
 
 
 def test_entry_point(tmp_path):

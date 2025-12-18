@@ -115,7 +115,7 @@ course was written by Liam Pattinson, another member of
 [actions]: https://docs.github.com/en/actions
 [netcdf]: https://www.unidata.ucar.edu/software/netcdf/
 [hdf5]: https://www.hdfgroup.org/solutions/hdf5/
-[pandas]: https://pola.rs
+[polars]: https://pola.rs
 [xarray]: https://docs.xarray.dev/en/stable/
 [sphinx]: https://www.sphinx-doc.org/en/master/
 [rtd]: https://readthedocs.org
